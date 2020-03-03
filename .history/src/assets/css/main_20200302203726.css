@@ -1,0 +1,23 @@
+
+ @tailwind components;
+
+/**
+ * This injects all of Tailwind's utility classes, generated based on your
+ * config file.
+ *
+ * If using `postcss-import`, you should import this line from it's own file:
+ *
+ * @import "./tailwind-utilities.css";
+ *
+ * See: https://github.com/tailwindcss/tailwindcss/issues/53#issuecomment-341413622
+ */
+@tailwind utilities;
+
+.vs-button.btn-not-color {background: transparent !important;color: #333;}
+.vs-button.btn-not-color:hover {background: transparent !important;box-shadow: none !important;}
+.router-content {position: relative;;}
+.po-ab {position: absolute; top: 0;right: 25px;;}
+.vs-component.vs-dropdown--menu {width: 150px;;}
+table th, table td {font-size: 12px;}
+.content-table {min-width: 350px;}
+.select-store {min-width: 350px !important;;}
