@@ -68,7 +68,7 @@ const state = {
     // Note: Above breakpoint state is for internal use of sidebar & navbar component
     windowWidth: null,
     config: {
-      PUBLIC_URL: 'http://api.ecosyco.com'
+      PUBLIC_URL: 'http://api.ecosyco.com/'
     }
 }
 
