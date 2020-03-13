@@ -124,6 +124,34 @@ export default [
             i18n: 'LỊCH SỬ HÓA ĐƠN'
           }
         ]
+      },
+      {
+        url: null,
+        slug: '/apps/customer',
+        icon: 'BookIcon',
+        name: 'KHÁCH HÀNG',
+        i18n: 'KHÁCH HÀNG',
+        submenu:
+        [
+          {
+            url: '/apps/khach-hang',
+            name: 'DANH SÁCH KHÁCH HÀNG',
+            slug: 'data-customer',
+            i18n: 'DANH SÁCH KHÁCH HÀNG'
+          },
+          {
+            url: '/apps/phan-loai-khach-hang',
+            name: 'PHÂN LOẠI KHÁCH HÀNG',
+            slug: 'data-type-customer',
+            i18n: 'PHÂN LOẠI KHÁCH HÀNG'
+          },
+          {
+            url: '/apps/khach-hang-he-thong',
+            name: 'KHÁCH HÀNG CỦA HỆ THỐNG ECOSY',
+            slug: 'dat-customer-ecosy',
+            i18n: 'KHÁCH HÀNG CỦA HỆ THỐNG'
+          },
+        ]
       }
     ]
   },

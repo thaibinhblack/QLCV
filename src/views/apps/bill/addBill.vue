@@ -3,9 +3,7 @@
   <setting-bill class="po-ab"/>
   <sidebar-setting />
   <vs-col class="p-6" vs-type="flex" vs-justify="left" vs-align="left" vs-lg="7" vs-sm="12" vs-xs="12" >
-      <v-select class="select-store" placeholder="Chọn cửa hàng" v-model="selected_store" :options="stores" value="ID_CUA_HANG"  label="TEN_CUA_HANG"  ></v-select><br />
-      <vs-button style="margin-left: 5px;">Cài đặt điểm</vs-button>
-  </vs-col>
+      <v-select class="select-store" placeholder="Chọn cửa hàng" v-model="selected_store" :options="stores" value="ID_CUA_HANG"  label="TEN_CUA_HANG"  ></v-select><br />  </vs-col>
   <vs-col class="p-6" vs-type="flex" vs-justify="center" vs-align="center" vs-lg="5" vs-sm="12" vs-xs="12" >
     <v-select class="select-store" placeholder="Chọn khách hàng" v-model="selected_customer" :options="LIST_CUSTOMER" value="UUID_KH"  label="SDT_KH" >
     </v-select>
@@ -221,17 +219,27 @@ export default {
 }
 </script>
 
+
 <style>
-.select-store {min-width: 250px;}
+.icon-right {float: right}
+.mr-5 {margin-right: 5px !important;}
 .scroll-product {
   width: 100%;
 }
 .list-product,.list-bill,.total {width:  100%;}
 .total {margin-top: 25px;}
 .list-product>li,.list-bill>li,.total>li{display: inline-block; width: 25%; padding: 10px 10px 0 0;}
-.total>li {width: 50%;}
-/* .total>li:last-child,.total>li:nth-child(2) {text-align: right} */
+.total>li {width: 50%;text-align: left}
+.total>li:first-child {width: 100%;}
+.total>li:last-child,.total>li.right {text-align: right}
 .section-product,.section-bill,.bg-white{background: #fff;}
 .section-bill  {border-radius: 5px;}
 .btn-tt {margin-top: 15px;}
+.list-point {margin-top: 10px;}
+.list-point>li {cursor: pointer;padding: 10px 5px;background:  #e2e2e2;}
+.list-point>li>ul>li {padding: 10px 0;}
+.list-child {display: none;}
+.list-child.active {display: block;}
+.list-point>li>button {background: transparent;border: none;outline: none;text-align: left; cursor: pointer;}
+.money.active {text-decoration: line-through}
 </style>

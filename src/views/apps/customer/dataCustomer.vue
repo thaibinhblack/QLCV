@@ -1,7 +1,7 @@
 <template>
     <div id="data-list-list-view" class="data-list-container">
         <sidebar-action-customer :isSidebarActive="isSidebarActive" @closeSidebar="isSidebarActive = $event" :data="sidebarData" />
-        
+        <sidebar-setting-customer />
         <vs-table ref="table" :data="LIST_CUSTOMER_LOCAL" >
             <div slot="header" style="width:100%">
               <vs-row vs-w="12">
@@ -110,7 +110,7 @@ import sidebarActionCustomerVue from './sidebarActionCustomer.vue'
 export default {
     components:{
         'sidebar-action-customer': sidebarActionCustomerVue,
-        
+        'sidebar-setting-customer': () => import('./sidebarActionCustomer')
     },
     data()
     {

@@ -203,6 +203,45 @@ const router = new Router({
                     },
                 },
                 {
+                    path: '/apps/khach-hang',
+                    name: 'DANH SÁCH KHÁCH HÀNG',
+                    component: () => import('@/views/apps/customerStore/dataCustomer.vue'),
+                    meta: {
+                        breadcrumb: [
+                            { title: 'Home', url: '/' },
+                            { title: 'Danh sách khách hàng', active: true },
+                        ],
+                        pageTitle: 'Khách hàng',
+                        rule: 'editor'
+                    },
+                },
+                {
+                    path: '/apps/phan-loai-khach-hang',
+                    name: 'PHÂN LOẠI KHÁCH HÀNG',
+                    component: () => import('@/views/apps/customerStore/dataTypeCustomers.vue'),
+                    meta: {
+                        breadcrumb: [
+                            { title: 'Home', url: '/' },
+                            { title: 'Danh sách phân loại khách hàng', active: true },
+                        ],
+                        pageTitle: 'Phân loại khách hàng',
+                        rule: 'editor'
+                    },
+                },
+                {
+                    path: '/apps/khach-hang-he-thong',
+                    name: 'KHÁCH HÀNG CỦA HỆ THỐNG',
+                    component: () => import('@/views/apps/customerStore/dataCustomersSystem.vue'),
+                    meta: {
+                        breadcrumb: [
+                            { title: 'Home', url: '/' },
+                            { title: 'Danh sách khách hàng của hệ thống', active: true },
+                        ],
+                        pageTitle: 'Khách hàng hệ thống',
+                        rule: 'editor'
+                    },
+                },
+                {
                     path: '/dashboard/analytics',
                     name: 'dashboard-analytics',
                     component: () => import('./views/DashboardAnalytics.vue'),

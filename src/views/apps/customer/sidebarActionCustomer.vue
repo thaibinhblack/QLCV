@@ -7,7 +7,8 @@
     <vs-divider class="mb-0"></vs-divider>
     <VuePerfectScrollbar class="scroll-area--data-list-add-new" :settings="settings">
         <div class="p-6">
-          <v-select class="select-store w-full" placeholder="Chọn cửa hàng" v-model="selected_store" :options="stores" value="ID_CUA_HANG"  label="TEN_CUA_HANG"  ></v-select><br />
+          <!-- {{selected_store}} -->
+          <v-select class="select-store w-full" placeholder="Chọn cửa hàng" v-model="selected_store" :options="LIST_STORE" value="ID_CUA_HANG"  label="TEN_CUA_HANG"  ></v-select><br />
           <!-- {{selected_store}} -->
           <vs-input label="Số điện thoại khách hàng" v-model="customer.SDT_KH" class="mt-5 w-full" name="SDT_KH" v-validate="'required'" @change="SearchCustomerSDT" />
           <span class="text-danger text-sm" v-show="errors.has('SDT_KH')">{{ errors.has('SDT_KH') == true ? 'Chưa nhập số điện thoại khách hàng' : '' }}</span>
@@ -18,9 +19,9 @@
           <span class="text-danger text-sm" v-show="errors.has('NGAY_SINH_KH')">{{ errors.has('NGAY_SINH_KH') == true ? 'Chưa nhập ngày sinh khách hàng' : '' }}</span>
         
           <p class="text-sm" style="margin-top: 15px;">TỈNH / THÀNH PHỐ</p>
-          <v-select v-model="selected_province" :options="LIST_PROVINCE" :reduce="province => province.ID_PROVINCE" label="NAME_PROVINCE" />
+          <v-select v-model="selected_province" :options="LIST_PROVINCE" label="NAME_PROVINCE" />
           <p class="text-sm" style="margin-top: 15px;">QUẬN / HUYỆN</p>
-          <v-select v-model="customer.DC_QH_KH" :options="LIST_DISTRICT" :reduce="district => district.ID_DISTRICT" label="NAME_DISTRICT" />
+          <v-select v-model="selected_district" :options="LIST_DISTRICT" label="NAME_DISTRICT" />
         <vs-textarea label="Địa chỉ" v-model="customer.DC_NHA_KH" class="mt-5 w-full" name="MO_TA_SAN_PHAM" placeholder="Nhập địa chỉ khách hàng"  />    
         </div>
     </VuePerfectScrollbar>
@@ -57,16 +58,24 @@ export default {
         this.initValues()
         this.$validator.reset()
       }else {
-        console.log(this.data)
         this.customer = this.data
+        this.selected_province = this.LIST_PROVINCE.filter((value,index,array) => {
+          return array[index].ID_PROVINCE == this.customer.DC_TP_KH
+        })[0]
+        this.selected_store = this.LIST_STORE.filter((value,index,array) => {
+          return array[index].ID_CUA_HANG == this.customer.ID_CUA_HANG
+        })[0]
       }
-      // Object.entries(this.data).length === 0 ? this.initValues() : { this.dataId, this.dataName, this.dataCategory, this.dataOrder_status, this.dataPrice } = JSON.parse(JSON.stringify(this.data))
     },
     selected_province(val)
     {
-        console.log(val)
-        this.customer.DC_TP_KH = val
+        console.log('watch')
+        this.customer.DC_TP_KH = val.ID_PROVINCE
         this.FilterProvince()
+    },
+    selected_district(val)
+    {
+      this.customer.DC_QH_KH = val.ID_DISTRICT 
     },
     selected_store(store)
     {
@@ -74,7 +83,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["LIST_PROVINCE", "LIST_DISTRICT"]),
+    ...mapGetters(["LIST_PROVINCE", "LIST_DISTRICT", "LIST_STORE"]),
     isFormValid() {
       return !this.errors.any()
     },
@@ -89,13 +98,6 @@ export default {
         this.initValues() 
       }
     },
-    stores: {
-      get()
-      {
-          return this.$store.state.store.stores
-          
-      },
-    }
   },
   data()
   {
@@ -115,7 +117,8 @@ export default {
       },
       files: [],
       selected_province: {},
-      selected_store: null
+      selected_store: null,
+      selected_district: null
     }
   },
   methods: {
@@ -132,7 +135,18 @@ export default {
     },
 
     submitCustomer(){
-      this.$store.dispatch('createCustomer',this.customer).then((response) => {
+      if(this.selected_store == null)
+      {
+          this.$vs.notify({
+              title: 'TẠO KHÁCH HÀNG',
+              text:'Bạn chưa chọn cửa hàng!',
+              position: 'bottom-left',
+              color:'warning'
+          })
+      }
+      else
+      {
+          this.$store.dispatch('createCustomer',this.customer).then((response) => {
           if(response.success == true)
             {
               // this.initValue()
@@ -160,11 +174,22 @@ export default {
                 position: 'bottom-left',
                 color:'danger'
             })
-          })
+        })
+      }
+    
     },
     FilterProvince()
     {
-        this.$store.dispatch('fetchDistrict',this.customer.DC_TP_KH)
+        this.$store.dispatch('fetchDistrict',this.customer.DC_TP_KH).then((response) => {
+           console.log(Object.entries(this.data).length)
+          if(Object.entries(this.customer).length > 0)
+          {
+            console.log(response)
+            this.selected_district = response.filter((value,index,array) => {
+              return array[index].ID_DISTRICT == this.customer.DC_QH_KH
+            })[0]
+          }
+        })  
     },
     SearchCustomerSDT()
     {
@@ -173,7 +198,7 @@ export default {
           // response.result[0].NGAY_SINH_KH = new Date(response.result[0].NGAY_SINH_KH)
           this.selected_province = this.LIST_PROVINCE.filter((value,index,array) => {
             return array[index].ID_PROVINCE == response.result.DC_TP_KH
-          })
+          })[0]
           this.customer = response.result
           this.customer.ID_CUA_HANG = this.selected_store.ID_CUA_HANG
         })

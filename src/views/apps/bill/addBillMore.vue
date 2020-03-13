@@ -284,6 +284,7 @@ export default {
 </script>
 
 <style>
+.select-store {width: 200px;;}
 .icon-right {float: right}
 .mr-5 {margin-right: 5px !important;}
 .scroll-product {
