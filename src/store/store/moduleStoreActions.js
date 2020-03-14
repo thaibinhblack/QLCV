@@ -158,7 +158,7 @@ export default {
     fetchTypeStore({commit})
     {
         return new Promise((resolve,reject) => {
-            axios.get('/api/type-store?api_token='+axios.defaults.params.token)
+            axios.get('/api/type-store')
             .then((response) => {
                 commit("SET_TYPE_STORE",response.data.result)
                 resolve(response.data)
@@ -212,6 +212,32 @@ export default {
                 resolve(response.data)
             })
             .catch((err) => {
+                reject(err)
+            })
+        })
+    },
+
+    resignterStore({commit},data)
+    {
+        return new Promise((resolve,reject) => {
+            const form_resign = new FormData();
+            form_resign.append("USERNAME_USER",data.user.USERNAME_USER)
+            form_resign.append("PASSWORD_USER",data.user.PASSWORD_USER)
+            form_resign.append("HO_TEN_USER",data.user.HO_TEN_USER)
+            form_resign.append("ID_LOAI_CUA_HANG",data.store.ID_LOAI_CUA_HANG)
+            form_resign.append("TEN_CUA_HANG",data.store.TEN_CUA_HANG)
+            form_resign.append("ID_PROVINCE",data.store.ID_PROVINCE)
+            form_resign.append("ID_DISTRICT",data.store.ID_DISTRICT)
+            form_resign.append("DIA_CHI_CUA_HANG",data.store.DIA_CHI_CUA_HANG)
+            form_resign.append("SDT_CUA_HANG",data.store.SDT_CUA_HANG)
+            axios.post('/api/register',form_resign).then((response) => {
+                resolve(response.data)
+                if(response.success == true)
+                {
+                    commit()
+                }
+                
+            }).catch((err) => {
                 reject(err)
             })
         })

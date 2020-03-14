@@ -100,11 +100,11 @@ export default {
       })
     },
     //check username
-    checkUsername({commit},USERNAME_USER)
+    checkUsername(USERNAME_USER)
     {
       console.log(USERNAME_USER)
       return new Promise((resolve,reject) => {
-        axios.get(`/api/check-username?USERNAME_USER=${USERNAME_USER}`).then((response) => {
+        axios.get(`/api/check-username?USERNAME=${USERNAME_USER}`).then((response) => {
           resolve(response.data)
         })
         .catch((err) => {

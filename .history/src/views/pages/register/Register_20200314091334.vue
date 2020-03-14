@@ -20,7 +20,7 @@
                         <div class="vx-col sm:w-full md:w-full lg:w-1/2 mx-auto self-center  d-theme-dark-bg">
                             <div class="px-8 pt-8 register-tabs-container">
                                 <div class="vx-card__title mb-4">
-                                    <h4 class="mb-4">TẠO TÀI KHOẢN</h4>
+                                    <h4 class="mb-4">TẠO TÀI KHẢON</h4>
                                     <p>Đăng ký để có ứng dụng quản lý cho riêng bạn cùng Ecosy.</p>
                                 </div>
                                 <register-jwt></register-jwt>
@@ -43,10 +43,6 @@ export default {
       RegisterJwt,
       RegisterFirebase,
       RegisterAuth0
-    },
-    created(){
-      this.$store.dispatch('fetchTypeStore')
-      this.$store.dispatch("fetchProvince")
     }
 }
 </script>

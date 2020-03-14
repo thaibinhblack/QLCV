@@ -26,12 +26,12 @@
     <span class="text-danger text-sm">{{ errors.first('password') }}</span>
 
     <div class="flex flex-wrap justify-between my-5">
-        <!-- <vs-checkbox v-model="checkbox_remember_me" class="mb-3">Remember Me</vs-checkbox> -->
-        <router-link to="/pages/forgot-password">Quên mật khẩu?</router-link>
+        <vs-checkbox v-model="checkbox_remember_me" class="mb-3">Remember Me</vs-checkbox>
+        <router-link to="/pages/forgot-password">Forgot Password?</router-link>
     </div>
-    <div class="flex flex-wrap justify-between ">
+    <div class="flex flex-wrap justify-between mb-3">
       <vs-button  type="border" to="/register" class="mt-6">Đăng ký</vs-button>
-      <vs-button :disabled="!validateForm" @click="loginSystem"  class="mt-6">Đăng nhập</vs-button>
+      <vs-button :disabled="!validateForm" @click="loginSystem">Đăng nhập</vs-button>
     </div>
   </div>
 </template>

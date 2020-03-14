@@ -1,36 +1,31 @@
 import axios from '@/axios'
-import state from './moduleStoreState'
+// import state from './moduleStoreState'
 export default {
 
     fetchStore({commit})
     {
-        if(Object.entries(state.stores).length == 0)
-        {
-            return new Promise((resolve,reject) => {
-                axios.get('/api/stores?api_token='+axios.defaults.params.token).then((response) => {
-                    commit("SET_STORE",response.data.result)
-                    resolve(response.data)
-                }).catch((error) => {
-                    reject(error)
-                })
+        return new Promise((resolve,reject) => {
+            axios.get('/api/stores?api_token='+axios.defaults.params.token).then((response) => {
+                commit("SET_STORE",response.data.result)
+                resolve(response.data)
+            }).catch((error) => {
+                reject(error)
             })
-        }
-        else
-        {
-            return new Promise((resolve) => {
-                resolve(state.stores)
-            })
-        }
+        })
     },
 
     createStore({commit}, store)
     {
         return new Promise((resolve,reject) => {
             const form_store = new FormData()
+            form_store.append("ID_LOAI_CUA_HANG",store.ID_LOAI_CUA_HANG)
             form_store.append("TEN_CUA_HANG",store.TEN_CUA_HANG);
             form_store.append( "DIA_CHI_CUA_HANG",store.DIA_CHI_CUA_HANG);
             form_store.append("SDT_CUA_HANG",store.SDT_CUA_HANG);
             form_store.append("GHI_CHU",store.GHI_CHU);
+            form_store.append("ID_PROVINCE",store.ID_PROVINCE)
+            form_store.append("ID_DISTRICT",store.ID_DISTRICT)
+            // form_store.append("OPTION_STORE",JSON.stringify(store.OPTION_STORE))
             axios.post('/api/store?api_token='+axios.defaults.params.token,form_store).then((response) => {
                 if(response.data.success == true)
                 {
@@ -59,6 +54,9 @@ export default {
             form_store.append( "DIA_CHI_CUA_HANG",store.DIA_CHI_CUA_HANG);
             form_store.append("SDT_CUA_HANG",store.SDT_CUA_HANG);
             form_store.append("GHI_CHU",store.GHI_CHU);
+            form_store.append("ID_PROVINCE",store.ID_PROVINCE)
+            form_store.append("ID_DISTRICT",store.ID_DISTRICT)
+            // form_store.append("OPTION_STORE",JSON.stringify(store.OPTION_STORE))
             axios.post('/api/store/'+store.ID_CUA_HANG+'/update?api_token='+axios.defaults.params.token,form_store).then((response) => {
                 if(response.data.success == true)
                 {
@@ -150,6 +148,97 @@ export default {
                     result: error,
                     status: 500
                 })
+            })
+        })
+    },
+
+
+    //type store
+
+    fetchTypeStore({commit})
+    {
+        return new Promise((resolve,reject) => {
+            axios.get('/api/type-store')
+            .then((response) => {
+                commit("SET_TYPE_STORE",response.data.result)
+                resolve(response.data)
+            })
+            .catch((err) => {
+                reject(err)
+            })
+        })
+    },
+
+    //seting point
+    fetchPoint({commit},ID_CUA_HANG)
+    {
+        return new Promise((resolve,reject) => {
+            axios.get('/api/cai-dat-diem/'+ID_CUA_HANG+'?api_token='+axios.defaults.params.token)
+            .then((response) => {
+                
+                if(response.data.result != null)
+                {
+                    commit("SET_POINT",response.data.result)
+                }
+                else
+                {
+                    commit("SET_POINT",{
+                        SO_TIEN: 0,
+                        SO_DIEM: 0,
+                        DOI_TIEN: 0
+                    })
+                }
+            })
+            .catch((err) => {
+                reject(err)
+            })
+        })
+    },
+    createPoint({commit},setting)
+    {
+        return new Promise((resolve,reject) => {
+            const form_point = new FormData();
+            form_point.append("ID_CUA_HANG",setting.ID_CUA_HANG)
+            form_point.append("SO_DIEM",setting.SO_DIEM)
+            form_point.append("SO_TIEN",setting.SO_TIEN)
+            form_point.append("DOI_TIEN",setting.DOI_TIEN)
+            axios.post('/api/cai-dat-diem?api_token='+axios.defaults.params.token,form_point)
+            .then((response) => {
+                if(response.data.success == true)
+                {
+                    commit("SET_POINT",response.data.result)
+
+                }
+                resolve(response.data)
+            })
+            .catch((err) => {
+                reject(err)
+            })
+        })
+    },
+
+    resignterStore({commit},data)
+    {
+        return new Promise((resolve,reject) => {
+            const form_resign = new FormData();
+            form_resign.append("USERNAME_USER",data.user.USERNAME_USER)
+            form_resign.append("PASSWORD_USER",data.user.PASSWORD_USER)
+            form_resign.append("HO_TEN_USER",data.user.HO_TEN_USER)
+            form_resign.append("ID_LOAI_CUA_HANG",data.store.ID_LOAI_CUA_HANG)
+            form_resign.append("TEN_CUA_HANG",data.store.TEN_CUA_HANG)
+            form_resign.append("ID_PROVINCE",data.store.ID_PROVINCE)
+            form_resign.append("ID_DISTRICT",data.store.ID_DISTRICT)
+            form_resign.append("DIA_CHI_CUA_HANG",data.store.DIA_CHI_CUA_HANG)
+            form_resign.append("SDT_CUA_HANG",data.store.SDT_CUA_HANG)
+            axios.post('/api/register',form_resign).then((response) => {
+                resolve(response.data)
+                if(response.success == true)
+                {
+                    commit()
+                }
+                
+            }).catch((err) => {
+                reject(err)
             })
         })
     }

@@ -15,14 +15,7 @@ const router = new Router({
             }
            
         },
-        {
-            path:'/register',
-            component: () => import('@/views/pages/register/Register.vue'),
-            meta: {
-                rule: 'editor'
-            }
-           
-        },
+
         {
     // =============================================================================
     // MAIN LAYOUT ROUTES

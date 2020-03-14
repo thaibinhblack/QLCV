@@ -59,8 +59,6 @@ Author URL: http://www.themeforest.net/user/pixinvent
             v-model="confirm_password"
             class="w-full mt-6" />
           <span class="text-danger text-sm">{{ errors.has('confirm_password') ? 'Bạn chưa xác nhận lại mật khẩu' : '' }}</span>
-          
-          <vs-button type="border" to="/login" class="mt-6">Đăng nhập</vs-button>
           <vs-button class="float-right mt-6" @click="next = 1">Tiếp</vs-button>
           <!-- <vs-checkbox v-model="isTermsConditionAccepted" class="mt-6">I accept the terms & conditions.</vs-checkbox>
           <vs-button  type="border" to="/pages/login" class="mt-6">Login</vs-button>
@@ -175,25 +173,16 @@ export default {
             if(response.success == true)
             {
               this.$cookies.set('token',response.result)
-              this.$router.push('/')
             }
             else
             {
-              this.$vs.notify({
+               this.$vs.notify({
                 title: 'ĐĂNG KÝ',
                 text:response.message,
                 position: 'bottom-left',
                 color:'warning'
               })
             }
-          })
-          .catch(() => {
-            this.$vs.notify({
-              title: 'ĐĂNG KÝ',
-              text: 'Lỗi server!',
-              position: 'bottom-left',
-              color:'danger'
-            })
           })
         }
     }

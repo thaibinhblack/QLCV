@@ -59,8 +59,6 @@ Author URL: http://www.themeforest.net/user/pixinvent
             v-model="confirm_password"
             class="w-full mt-6" />
           <span class="text-danger text-sm">{{ errors.has('confirm_password') ? 'Bạn chưa xác nhận lại mật khẩu' : '' }}</span>
-          
-          <vs-button type="border" to="/login" class="mt-6">Đăng nhập</vs-button>
           <vs-button class="float-right mt-6" @click="next = 1">Tiếp</vs-button>
           <!-- <vs-checkbox v-model="isTermsConditionAccepted" class="mt-6">I accept the terms & conditions.</vs-checkbox>
           <vs-button  type="border" to="/pages/login" class="mt-6">Login</vs-button>
@@ -71,7 +69,7 @@ Author URL: http://www.themeforest.net/user/pixinvent
        <div class="clearfix">
           <v-select class="select-store" placeholder="Nhập thể loại cửa hàng" v-model="selected_type_store" :options="TYPE_STORE" 
           value="ID_LOAI_CUA_HANG"  label="TEN_LOAI_CUA_HANG"  ></v-select>
-          <vs-input class="w-full" v-model="store.TEN_CUA_HANG" type="text" placeholder="Nhập tên cửa hàng" label="Tên cửa hàng"></vs-input>
+          <vs-input class="w-full" type="text" placeholder="Nhập tên cửa hàng" label="Tên cửa hàng"></vs-input>
           <v-select class="select-province mt-15" placeholder="Chọn Tỉnh / Thành Phố" v-model="select_province" :options="LIST_PROVINCE" 
           value="ID_PROVINCE"  label="NAME_PROVINCE"  ></v-select>
           <v-select class="select-district mt-15" placeholder="Chọn Quận / Huyện" v-model="select_district" :options="LIST_DISTRICT_LOCAL" 
@@ -120,7 +118,7 @@ export default {
     computed: {
         ...mapGetters(["TYPE_STORE", "LIST_PROVINCE", "LIST_DISTRICT"]),
         validateForm() {
-            return !this.errors.any()  && this.confirm_password != ''  && this.errors_username === false;
+            return !this.errors.any() && this.displayName != '' && this.email != '' && this.password != '' && this.confirm_password != '' && this.isTermsConditionAccepted === true && this.errors_username === true;
         }
     },
     watch:
@@ -144,10 +142,6 @@ export default {
       selected_type_store(type)
       {
         this.store.ID_LOAI_CUA_HANG = type.ID_LOAI_CUA_HANG
-      },
-      LIST_DISTRICT(districts)
-      {
-        this.LIST_DISTRICT_LOCAL = districts
       }
     },
     methods: {
@@ -172,28 +166,7 @@ export default {
             user: this.user,
             store: this.store
           }).then((response) => {
-            if(response.success == true)
-            {
-              this.$cookies.set('token',response.result)
-              this.$router.push('/')
-            }
-            else
-            {
-              this.$vs.notify({
-                title: 'ĐĂNG KÝ',
-                text:response.message,
-                position: 'bottom-left',
-                color:'warning'
-              })
-            }
-          })
-          .catch(() => {
-            this.$vs.notify({
-              title: 'ĐĂNG KÝ',
-              text: 'Lỗi server!',
-              position: 'bottom-left',
-              color:'danger'
-            })
+            console.log(response)
           })
         }
     }

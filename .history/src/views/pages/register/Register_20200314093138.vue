@@ -46,7 +46,6 @@ export default {
     },
     created(){
       this.$store.dispatch('fetchTypeStore')
-      this.$store.dispatch("fetchProvince")
     }
 }
 </script>

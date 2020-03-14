@@ -43,10 +43,6 @@ export default {
       RegisterJwt,
       RegisterFirebase,
       RegisterAuth0
-    },
-    created(){
-      this.$store.dispatch('fetchTypeStore')
-      this.$store.dispatch("fetchProvince")
     }
 }
 </script>
