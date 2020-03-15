@@ -218,19 +218,6 @@ const router = new Router({
                         rule: 'editor'
                     },
                 },
-                {
-                    path: '/apps/customers',
-                    name: 'DANH SÁCH KHÁCH HÀNG',
-                    component: () => import('@/views/apps/customer/dataCustomer.vue'),
-                    meta: {
-                        breadcrumb: [
-                            { title: 'Home', url: '/' },
-                            { title: 'Danh sách khách hàng của hệ thống', active: true },
-                        ],
-                        pageTitle: 'KHÁCH HÀNG',
-                        rule: 'editor'
-                    },
-                },
 
     
             ]

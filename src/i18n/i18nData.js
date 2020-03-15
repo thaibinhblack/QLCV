@@ -16,6 +16,7 @@ export default {
 		addBillMore: 'THÊM MỚI HÓA ĐƠN KHÁC',
 		logBill: 'LỊCH SỬ HÓA ĐƠN',
 		customer: 'KHÁCH HÀNG',
+		customers: 'DANH SÁCH KHÁCH HÀNG',
 		listCustomer: 'DANH SÁCH KHÁCH HÀNG',
 		typeCustomer: 'PHÂN LOẠI KHÁCH HÀNG',
 		customerSystem: 'KHÁCH HÀNG CỦA HỆ THỐNG',

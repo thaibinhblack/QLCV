@@ -3,7 +3,7 @@ import Vue from 'vue'
 import App from './App.vue'
 
 // Vuesax Component Framework
-import Vuesax from 'vuesax'
+import { vsButton, vsSelect, vsPopup } from 'vuesax'
 import 'material-icons/iconfont/material-icons.css' //Material Icons
 import 'vuesax/dist/vuesax.css'; // Vuesax
 import VueCookies from 'vue-cookies'
@@ -13,7 +13,9 @@ import Vue2Editor from "vue2-editor";
 
 Vue.use(Vue2Editor);
 Vue.component('v-select', vSelect)
-Vue.use(Vuesax)
+Vue.use(vsButton)
+Vue.use(vsSelect)
+Vue.use(vsPopup)
 
 Vue.use(VueCookies)
 

@@ -14,10 +14,7 @@
     <template >
       <the-navbar-vertical
         :navbarColor="navbarColor"
-        :class="[
-          {'text-white' : isNavbarDark  && !isThemeDark},
-          {'text-base'  : !isNavbarDark && isThemeDark}
-        ]" />
+        :class="'text-white'" />
     </template>
     <!-- /Navbar -->
 

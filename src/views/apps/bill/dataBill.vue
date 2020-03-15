@@ -3,9 +3,9 @@
         <vs-table ref="table" :data="BILLS_LOCAL" >
           <div slot="header" class="header-table-search flex flex-wrap-reverse items-center flex-grow justify-between">
                 <!-- {{stores}} -->
-                <v-select class="select-store"  placeholder="Chọn khách hàng"  v-model="selected_store" :options="stores" value="ID_CUA_HANG"  label="TEN_CUA_HANG" ></v-select>
+                <v-select class="select-store mw-200"  placeholder="Chọn khách hàng"  v-model="selected_store" :options="LIST_STORE" value="ID_CUA_HANG"  label="TEN_CUA_HANG" ></v-select>
 
-                <vs-button type="border" icon-pack="feather" icon="icon-plus" @click="addNewData">Thêm mới</vs-button>
+                <!-- <vs-button type="border" icon-pack="feather" icon="icon-plus" @click="addNewData">Thêm mới</vs-button> -->
 
             </div>
 
@@ -81,12 +81,13 @@ export default {
     data()
     {
         return {
-            BILLS_LOCAL: []
+            BILLS_LOCAL: [],
+            selected_store: null
         }  
     },
     computed:
     {
-        ...mapGetters(["BILLS"]),
+        ...mapGetters(["BILLS", "LIST_STORE"]),
     },
     watch:
     {

@@ -120,50 +120,6 @@ export default [
       }
     ]
   },
-  {
-    header: "users",
-    icon: "PackageIcon",
-    i18n: "userSystem",
-    items: [
-      {
-        url: "/apps/users",
-        name: "NHÂN VIÊN",
-        slug: "user",
-        icon: "UserIcon",
-        i18n: "user",
-      },
-    ]
-  },
-
-  {
-    header: "customer",
-    icon: "PackageIcon",
-    i18n: "customerSystem",
-    items: [
-      {
-        url: null,
-        name: "KHÁCH HÀNG",
-        slug: "user",
-        icon: "UserIcon",
-        i18n: "customer",
-        submenu: [
-          {
-            url: '/apps/customers',
-            name: 'data-customers',
-            slug: 'data-customers',
-            i18n: 'DANH SÁCH KHÁCH HÀNG',
-          },
-          
-          // {
-          //   url: '/apps/buy-data-customer',
-          //   name: 'MUA DỮ LIỆU KHÁCH HÀNG',
-          //   slug: 'customers',
-          //   i18n: 'MUA DỮ LIỆU KHÁCH HÀNG',
-          // }
-        ]
-      },
-    ]
-  },
   
 ]
 
