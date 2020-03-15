@@ -33,7 +33,7 @@ const router = new Router({
             children: [
              {
                     path: '/',
-                    redirect: '/apps/stores'
+                    redirect: '/login'
                 },
                 //profile
                 //store

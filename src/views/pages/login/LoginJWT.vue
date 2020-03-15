@@ -27,7 +27,7 @@
 
     <div class="flex flex-wrap justify-between my-5">
         <!-- <vs-checkbox v-model="checkbox_remember_me" class="mb-3">Remember Me</vs-checkbox> -->
-            </div>
+      </div>
     <div class="flex flex-wrap justify-between ">
       <vs-button  type="border" to="/register" class="mt-6">Đăng ký</vs-button>
       <vs-button :disabled="!validateForm" @click="loginSystem"  class="mt-6">Đăng nhập</vs-button>
@@ -95,7 +95,7 @@ export default {
             // console.log(response.result)
             this.$cookies.set('token',response.result)
             axios.defaults.params.token = response.result
-            this.$router.push('/')
+            this.$router.push('/apps/stores')
             
             
           }
@@ -108,9 +108,10 @@ export default {
   },
   created()
   {
-    if(Object.entries(this.$store.state.user.user).length != 0)
+    if(this.$cookies.isKey('token'))
     {
-        this.$router.push('/')
+        axios.defaults.params.token = this.$cookies.get('token')
+        this.$router.push('/apps/stores')
     }
   }
 }
