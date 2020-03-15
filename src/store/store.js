@@ -8,8 +8,6 @@ import actions from "./actions"
 
 Vue.use(Vuex)
 
-import moduleAuth from './auth/moduleAuth.js'
-import moduleECommerce from './eCommerce/moduleECommerce.js'
 import moduleUser from './users/moduleUser.js'
 import moduleStore from './store/moduleStore.js'
 import moduleProduct from './product/moduleProduct.js'
@@ -23,12 +21,6 @@ export default new Vuex.Store({
     state,
     actions,
     modules: {
-        // todo: moduleTodo,
-        // calendar: moduleCalendar,
-        // chat: moduleChat,
-        // email: moduleEmail,
-        auth: moduleAuth,
-        eCommerce: moduleECommerce,
         user: moduleUser,
         store: moduleStore,
         product: moduleProduct,

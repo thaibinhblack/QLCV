@@ -93,6 +93,7 @@ Author URL: http://www.themeforest.net/user/pixinvent
 </template>
 
 <script>
+import axios from '@/axios'
 import { mapGetters } from 'vuex';
 export default {
     data() {
@@ -175,6 +176,7 @@ export default {
             if(response.success == true)
             {
               this.$cookies.set('token',response.result)
+                axios.defaults.params.token = response.result
               this.$router.push('/')
             }
             else

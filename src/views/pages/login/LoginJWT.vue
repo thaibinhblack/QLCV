@@ -27,8 +27,7 @@
 
     <div class="flex flex-wrap justify-between my-5">
         <!-- <vs-checkbox v-model="checkbox_remember_me" class="mb-3">Remember Me</vs-checkbox> -->
-        <router-link to="/pages/forgot-password">Quên mật khẩu?</router-link>
-    </div>
+            </div>
     <div class="flex flex-wrap justify-between ">
       <vs-button  type="border" to="/register" class="mt-6">Đăng ký</vs-button>
       <vs-button :disabled="!validateForm" @click="loginSystem"  class="mt-6">Đăng nhập</vs-button>
@@ -37,11 +36,12 @@
 </template>
 
 <script>
+import axios from '@/axios'
 export default {
   data() {
     return {
-      email: 'admin@admin.com',
-      password: 'adminadmin',
+      email: '',
+      password: '',
       checkbox_remember_me: false
     }
   },
@@ -82,7 +82,7 @@ export default {
       }
       // console.log(payload)
       this.$store.dispatch('user/loginSystem',payload).then((response) => {
-          console.log('login',response)
+          // console.log('login',response)
           if(response.success == false)
           {
             this.$vs.notify({
@@ -92,21 +92,10 @@ export default {
           }
           else
           {
-            console.log(response.result)
+            // console.log(response.result)
             this.$cookies.set('token',response.result)
-            this.$store.dispatch("user/checkUser",response.result).then((response) => {
-              if(response.success == true)
-              {
-                this.$router.push('/')
-              }
-              else
-              {
-                this.$vs.notify({
-                  text:response.message,
-                  color:'red'
-                })
-              }
-            })
+            axios.defaults.params.token = response.result
+            this.$router.push('/')
             
             
           }
@@ -116,38 +105,6 @@ export default {
           this.$vs.loading.close()
       });
     },
-    loginJWT() {
-
-      if (!this.checkLogin()) return
-
-      // Loading
-      this.$vs.loading()
-
-      const payload = {
-        checkbox_remember_me: this.checkbox_remember_me,
-        userDetails: {
-          email: this.email,
-          password: this.password
-        }
-      }
-
-      this.$store.dispatch('auth/loginJWT', payload)
-        .then(() => { this.$vs.loading.close() })
-        .catch(error => {
-          this.$vs.loading.close()
-          this.$vs.notify({
-            title: 'Error',
-            text: error.message,
-            iconPack: 'feather',
-            icon: 'icon-alert-circle',
-            color: 'danger'
-          })
-        })
-    },
-    registerUser() {
-      if (!this.checkLogin()) return
-      this.$router.push('/pages/register').catch(() => {})
-    }
   },
   created()
   {

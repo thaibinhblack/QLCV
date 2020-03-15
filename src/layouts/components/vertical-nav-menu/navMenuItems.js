@@ -3,90 +3,55 @@
 export default [
 
   {
-    url: null,
-    name: "Dashboard",
-    tag: "2",
-    tagColor: "warning",
-    icon: "HomeIcon",
-    i18n: "Thống kê",
-    submenu: [
-      {
-        url: '/dashboard/analytics',
-        name: "Analytics",
-        slug: "dashboard-analytics",
-        i18n: "Analytics",
-      },
-      {
-        url: '/dashboard/ecommerce',
-        name: "eCommerce",
-        slug: "dashboard-ecommerce",
-        i18n: "eCommerce",
-      },
-    ]
-  },
-  {
     header: 'stores',
     icon: 'StoreIcon',
-    i18n: 'CỬA HÀNG HỆ THỐNG',
+    i18n: 'stores',
     items: [
       {
         url: null,
-        name: 'store',
+        name: 'CỬA HÀNG',
         icon: 'ShoppingCartIcon',
-        i18n: 'CỬA HÀNG',
+        i18n: 'store',
         submenu: [
           {
             url: '/apps/stores',
-            slug: 'stores',
+            slug: 'DANH SÁCH CỬA HÀNG',
             name: 'stores',
-            i18n: 'DANH SÁCH CH'
+            i18n: 'listStore'
           },
-          {
-            url: '/apps/setting-store',
-            slug: 'setting-store',
-            name: 'setting-store',
-            i18n: 'CÀI ĐẶT'
-          }
         ]
-      },
-      {
-        url: 'app/kho',
-        slug: 'scooter-kho',
-        icon: 'CheckSquareIcon',
-        name: 'kho',
-        i18n: 'KHO CỦA CỬA HÀNG'
       },
       {
         url: null,
         slug: '/apps/product',
         icon: 'PackageIcon',
-        name: 'product',
-        i18n: 'SẢN PHẨM',
+        name: 'SẢN PHẨM',
+        i18n: 'product',
         submenu: [
           {
             url: '/apps/products',
-            name: 'products',
+            name: 'DANH SÁCH SẢN PHẨM',
             slug: 'products',
-            i18n: 'DANH SÁCH SẢN PHẨM',
+            i18n: 'listProduct',
           },
           {
             url: '/apps/product',
-            name: 'add-product',
+            name: 'THÊM MỚI SẢN PHẨM',
             slug: 'add-product',
-            i18n: 'THÊM MỚI SẢN PHẨM',
+            i18n: 'addProduct',
           },
           {
             url: '/apps/type-product',
-            name: 'type-product',
+            name: 'THỂ LOẠI SẢN PHẨM',
             slug: 'type-product',
-            i18n: 'THỂ LOẠI'
+            i18n: 'typeProduct'
           },
           
           {
             url: '/apps/log-product',
-            name: 'log-product',
+            name: 'LỊCH SỬ SẢN PHẨM',
             slug: 'log-product',
-            i18n: 'LỊCH SỬ'
+            i18n: 'logProduct'
           },
           
           
@@ -96,32 +61,32 @@ export default [
         url: null,
         slug: '/apps/bill',
         icon: 'BookIcon',
-        name: 'bill',
-        i18n: 'HÓA ĐƠN',
+        name: 'HÓA ĐƠN',
+        i18n: 'bill',
         submenu: [
           {
             url: '/apps/bills',
-            name: 'Bills',
+            name: 'DANH SÁCH HÓA ĐƠN',
             slug: 'Bill',
-            i18n: 'DANH SÁCH HÓA ĐƠN',
+            i18n: 'listBill',
           },
           {
             url: '/apps/bill',
-            name: 'add-bill',
+            name: 'THÊM MỚI HÓA ĐƠN',
             slug: 'add-bill',
-            i18n: 'THÊM MỚI HÓA ĐƠN',
+            i18n: 'addBill',
           },
           {
             url: '/apps/bill-more',
-            name: 'add-bill-more',
+            name: 'THÊM MỚI HÓA ĐƠN KHÁC',
             slug: 'add-bill-more',
-            i18n: 'THÊM MỚI HÓA ĐƠN KHÁC',
+            i18n: 'addBillMore',
           },
           {
             url: '/apps/log-bill',
-            name: 'log-bill',
+            name: 'LỊCH SỬ HÓA ĐƠN',
             slug: 'log-bill',
-            i18n: 'LỊCH SỬ HÓA ĐƠN'
+            i18n: 'logBill'
           }
         ]
       },
@@ -130,26 +95,26 @@ export default [
         slug: '/apps/customer',
         icon: 'BookIcon',
         name: 'KHÁCH HÀNG',
-        i18n: 'KHÁCH HÀNG',
+        i18n: 'customer',
         submenu:
         [
           {
             url: '/apps/khach-hang',
             name: 'DANH SÁCH KHÁCH HÀNG',
             slug: 'data-customer',
-            i18n: 'DANH SÁCH KHÁCH HÀNG'
+            i18n: 'listCustomer'
           },
           {
             url: '/apps/phan-loai-khach-hang',
             name: 'PHÂN LOẠI KHÁCH HÀNG',
             slug: 'data-type-customer',
-            i18n: 'PHÂN LOẠI KHÁCH HÀNG'
+            i18n: 'typeCustomer'
           },
           {
             url: '/apps/khach-hang-he-thong',
             name: 'KHÁCH HÀNG CỦA HỆ THỐNG ECOSY',
             slug: 'dat-customer-ecosy',
-            i18n: 'KHÁCH HÀNG CỦA HỆ THỐNG'
+            i18n: 'customerSystem'
           },
         ]
       }
@@ -158,14 +123,14 @@ export default [
   {
     header: "users",
     icon: "PackageIcon",
-    i18n: "Nhân viên hệ thống",
+    i18n: "userSystem",
     items: [
       {
         url: "/apps/users",
-        name: "User",
+        name: "NHÂN VIÊN",
         slug: "user",
         icon: "UserIcon",
-        i18n: "Nhân viên",
+        i18n: "user",
       },
     ]
   },
@@ -173,14 +138,14 @@ export default [
   {
     header: "customer",
     icon: "PackageIcon",
-    i18n: "Khách hàng của hệ thống",
+    i18n: "customerSystem",
     items: [
       {
         url: null,
-        name: "User",
+        name: "KHÁCH HÀNG",
         slug: "user",
         icon: "UserIcon",
-        i18n: "Khách hàng",
+        i18n: "customer",
         submenu: [
           {
             url: '/apps/customers',

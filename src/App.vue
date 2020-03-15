@@ -6,8 +6,6 @@
 
 <script>
 import themeConfig from '@/../themeConfig.js'
-import jwt         from "@/http/requests/auth/jwt/index.js"
-
 export default {
   watch: {
     '$store.state.theme'(val) {
@@ -41,9 +39,6 @@ export default {
     this.$store.commit('UPDATE_WINDOW_WIDTH', window.innerWidth)
   },
   async created() {
-    // jwt
-    jwt.init()
-
     window.addEventListener('resize', this.handleWindowResize)
     window.addEventListener('scroll', this.handleScroll)
 

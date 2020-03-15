@@ -31,31 +31,15 @@ const router = new Router({
             path: '',
             component: () => import('./layouts/main/Main.vue'),
             children: [
-        // =============================================================================
-        // Theme Routes
-        // =============================================================================
-                
-                {
+             {
                     path: '/',
-                    redirect: '/dashboard/analytics'
+                    redirect: '/apps/stores'
                 },
                 //profile
-                {
-                    path: '/profile',
-                    component: () => import('@/views/pages/Profile.vue'),
-                    meta: {
-                        breadcrumb: [
-                            { title: 'Home', url: '/' },
-                            { title: 'Thông tin cá nhân' , active: true },
-                        ],
-                        pageTitle: 'Thôn tin cá nhân',
-                        rule: 'editor'
-                    },
-                },
                 //store
                 {
                     path: '/apps/stores',
-                    name: 'page-stores',
+                    name: 'DANH SÁCH CỬA HÀNG',
                     component: () => import('@/views/apps/store/DataStore.vue'),
                     meta: {
                         breadcrumb: [
@@ -67,24 +51,10 @@ const router = new Router({
                         rule: 'editor'
                     },
                 },
-                {
-                    path: '/apps/setting-store',
-                    name: 'page-stores',
-                    component: () => import('@/views/apps/store/SettingStore.vue'),
-                    meta: {
-                        breadcrumb: [
-                            { title: 'Home', url: '/' },
-                            { title: 'Cửa hàng'},
-                            { title: 'CÀI ĐẶT CÁC THÔNG KHÁC CỦA CỬA HÀNG', active: true },
-                        ],
-                        pageTitle: 'CÀI ĐẶT THÔNG TIN CHO CỬA HÀNG',
-                        rule: 'editor'
-                    },
-                },
                 //user
                 {
                     path: '/apps/users',
-                    name: 'data-list-users',
+                    name: 'DANH SÁCH NHÂN VIÊN',
                     component: () => import('@/views/apps/user/DataListUser.vue'),
                     meta: {
                         breadcrumb: [
@@ -99,7 +69,7 @@ const router = new Router({
                 //products
                 {
                     path: '/apps/products',
-                    name: 'data-list-products',
+                    name: 'DANH SÁCH SẢN PHẨM',
                     component: () => import('@/views/apps/products/dataProduct.vue'),
                     meta: {
                         breadcrumb: [
@@ -113,7 +83,7 @@ const router = new Router({
                 },
                 {
                     path: '/apps/product/:id',
-                    name: 'info-products',
+                    name: 'THÔNG TIN SẢN PHẨM',
                     component: () => import('@/views/apps/products/infoProduct.vue'),
                     meta: {
                         breadcrumb: [
@@ -121,13 +91,13 @@ const router = new Router({
                             { title: 'Sản phẩm', url: '/apps/products'},
                             { title: 'Thông tin sản phẩm', active: true },
                         ],
-                        pageTitle: 'Danh sách sản phẩm',
+                        pageTitle: 'THÔNG TIN SẢN PHẨM',
                         rule: 'editor'
                     },
                 },
                 {
                     path: '/apps/product',
-                    name: 'add-products',
+                    name: 'THÊM MỚI SẢN PHẨM',
                     component: () => import('@/views/apps/products/addProduct.vue'),
                     meta: {
                         breadcrumb: [
@@ -141,7 +111,7 @@ const router = new Router({
                 },
                 {
                     path: '/apps/log-product',
-                    name: 'log-product',
+                    name: 'LỊCH SỬ SẢN PHẨM',
                     component: () => import('@/views/apps/products/logProduct.vue'),
                     meta: {
                         breadcrumb: [
@@ -155,7 +125,7 @@ const router = new Router({
                 },
                 {
                     path: '/apps/bills',
-                    name: 'Bill',
+                    name: 'DANH SÁCH HÓA ĐƠN',
                     component: () => import('@/views/apps/bill/dataBill.vue'),
                     meta: {
                         breadcrumb: [
@@ -163,13 +133,13 @@ const router = new Router({
                             // { title: 'Hóa đơn', url: '/apps/bills'},
                             { title: 'Danh sách hóa đơn', active: true },
                         ],
-                        pageTitle: 'Danh sách sản phẩm',
+                        pageTitle: 'HÓA ĐƠN',
                         rule: 'editor'
                     },
                 },
                 {
                     path: '/apps/bill',
-                    name: 'add-bill',
+                    name: 'THÊM MỚI HÓA ĐƠN',
                     component: () => import('@/views/apps/bill/addBill.vue'),
                     meta: {
                         breadcrumb: [
@@ -177,13 +147,13 @@ const router = new Router({
                             { title: 'Danh sách hóa đơn', url: '/apps/bills'},
                             { title: 'Thêm mới hóa đơn', active: true },
                         ],
-                        pageTitle: 'Danh sách sản phẩm',
+                        pageTitle: 'HÓA ĐƠN',
                         rule: 'editor'
                     },
                 },
                 {
                     path: '/apps/bill-more',
-                    name: 'add-bill-more',
+                    name: 'THÊM MỚI HÓA ĐƠN KHÁC',
                     component: () => import('@/views/apps/bill/addBillMore.vue'),
                     meta: {
                         breadcrumb: [
@@ -191,13 +161,13 @@ const router = new Router({
                             { title: 'Danh sách hóa đơn', url: '/apps/bills'},
                             { title: 'Thêm mới hóa đơn', active: true },
                         ],
-                        pageTitle: 'Thêm hóa đơn mới',
+                        pageTitle: 'HÓA ĐƠN',
                         rule: 'editor'
                     },
                 },
                 {
                     path: '/apps/log-bill',
-                    name: 'log-bill',
+                    name: 'LỊCH SỬ HÓA ĐƠN',
                     component: () => import('@/views/apps/bill/logBill.vue'),
                     meta: {
                         breadcrumb: [
@@ -205,7 +175,7 @@ const router = new Router({
                             { title: 'Danh sách hóa đơn', url: '/apps/bills'},
                             { title: 'Lịch sử hóa đơn', active: true },
                         ],
-                        pageTitle: 'Danh sách lịch sử thao tác hóa đơn',
+                        pageTitle: 'LỊCH SỬ',
                         rule: 'editor'
                     },
                 },
@@ -249,31 +219,15 @@ const router = new Router({
                     },
                 },
                 {
-                    path: '/dashboard/analytics',
-                    name: 'dashboard-analytics',
-                    component: () => import('./views/DashboardAnalytics.vue'),
-                    meta: {
-                        rule: 'editor',
-                    }
-                },
-                {
-                    path: '/dashboard/ecommerce',
-                    name: 'dashboard-ecommerce',
-                    component: () => import('./views/DashboardECommerce.vue'),
-                    meta: {
-                        rule: 'admin'
-                    }
-                },
-                {
                     path: '/apps/customers',
-                    name: 'data-customers',
+                    name: 'DANH SÁCH KHÁCH HÀNG',
                     component: () => import('@/views/apps/customer/dataCustomer.vue'),
                     meta: {
                         breadcrumb: [
                             { title: 'Home', url: '/' },
                             { title: 'Danh sách khách hàng của hệ thống', active: true },
                         ],
-                        pageTitle: 'Danh sách khách hàng',
+                        pageTitle: 'KHÁCH HÀNG',
                         rule: 'editor'
                     },
                 },

@@ -13,3 +13,6 @@ package-lock.json
 docs/.vuepress/dist/
 yarn.lock
 scripts/
+src/axios.js
+src/store/state.js
+.history/

@@ -11,27 +11,7 @@
     <div id="content-area" :class="[contentAreaClass, {'show-overlay': bodyOverlay}]">
       <div id="content-overlay" />
 
-    <!-- Navbar -->
-    <template v-if="mainLayoutType === 'horizontal' && windowWidth >= 1200">
-      <the-navbar-horizontal
-        :navbarType= "navbarType"
-        :logo= "navMenuLogo"
-        :class="[
-          {'text-white' : isNavbarDark  && !isThemeDark},
-          {'text-base'  : !isNavbarDark && isThemeDark}
-        ]" />
-
-      <div style="height: 62px" v-if="navbarType === 'static'"></div>
-
-      <h-nav-menu
-        :class="[
-          {'text-white' : isNavbarDark  && !isThemeDark},
-          {'text-base'  : !isNavbarDark && isThemeDark}
-        ]"
-        :navMenuItems="navMenuItems" />
-    </template>
-
-    <template v-else>
+    <template >
       <the-navbar-vertical
         :navbarColor="navbarColor"
         :class="[
@@ -56,7 +36,6 @@
                 </div>
 
                 <!-- BREADCRUMB -->
-                <vx-breadcrumb class="ml-4 md:block hidden" v-if="$route.meta.breadcrumb" :route="$route" />
 
                 <!-- DROPDOWN -->
              
@@ -85,27 +64,19 @@
 
 <script>
 import BackToTop           from 'vue-backtotop'
-import HNavMenu            from "@/layouts/components/horizontal-nav-menu/HorizontalNavMenu.vue"
 import navMenuItems        from "@/layouts/components/vertical-nav-menu/navMenuItems.js"
-import TheCustomizer       from "@/layouts/components/customizer/TheCustomizer.vue"
-import TheNavbarHorizontal from '@/layouts/components/navbar/TheNavbarHorizontal.vue'
 import TheNavbarVertical   from '@/layouts/components/navbar/TheNavbarVertical.vue'
 import TheFooter           from '@/layouts/components/TheFooter.vue'
 import themeConfig         from '@/../themeConfig.js'
 import VNavMenu            from '@/layouts/components/vertical-nav-menu/VerticalNavMenu.vue'
 
-const VxTour = () => import('@/components/VxTour.vue')
 import axios from '@/axios'
 export default {
   components: {
     BackToTop,
-    HNavMenu,
-    TheCustomizer,
     TheFooter,
-    TheNavbarHorizontal,
     TheNavbarVertical,
     VNavMenu,
-    VxTour
   },
   data() {
     return {
@@ -247,7 +218,6 @@ export default {
           else
           {
             axios.defaults.params.token = this.$cookies.get('token')
-            console.log(axios.defaults.params)
             this.$store.state.user.info = response.data.result
           }
         })
