@@ -5,15 +5,37 @@
   <vs-col class="p-6" vs-type="flex" vs-justify="left" vs-align="left" vs-lg="7" vs-sm="12" vs-xs="12" >
       <v-select class="select-store" placeholder="Chọn cửa hàng" v-model="selected_store" :options="stores" value="ID_CUA_HANG"  label="TEN_CUA_HANG"  ></v-select><br />  </vs-col>
   <vs-col class="p-6" vs-type="flex" vs-justify="center" vs-align="center" vs-lg="5" vs-sm="12" vs-xs="12" >
-    <v-select class="select-store" placeholder="Chọn khách hàng" v-model="selected_customer" :options="LIST_CUSTOMER" value="UUID_KH"  label="SDT_KH" >
+    <v-select class="select-store mw-200" placeholder="Chọn khách hàng" v-model="selected_customer" :options="LIST_CUSTOMER" value="UUID_KH"  label="SDT_KH" >
     </v-select>
     <vs-button style="margin-left: 5px;" @click="isSidebarActive = true">Thêm mới</vs-button>
   </vs-col>
+
   <vs-col class="p-6" vs-justify="left" vs-align="left" vs-lg="7" vs-sm="12" vs-xs="12" >
    <div class="section-product p-6">
       <span v-if="LIST_PRODUCT.length == 0">Chưa có sản phẩm!</span>
       <item-product v-for="(product,index) in LIST_PRODUCT" :key="index" :product="product"></item-product>
    </div>
+    <div class="section-product p-6 mt-15">
+      <vs-button type="border" size="small" @click="addProduct()">+</vs-button>
+      <vs-row vs-w="12" v-for="(bill,index) in LIST_BILL_MORE" :key="index">
+        
+              <vs-col class="pd-5" vs-justify="left" vs-align="left" vs-lg="5" vs-sm="5" vs-xs="5" >
+                  <vs-input v-model="bill.TEN_SAN_PHAM"  class="mt-5 mr-5 w-full" type="text"></vs-input>
+              </vs-col>
+
+              <vs-col class="pd-5"  vs-justify="left" vs-align="left" vs-lg="4" vs-sm="4" vs-xs="4" >
+                  <vs-input v-model="bill.GIA_SAN_PHAM"  class="mt-5 mr-5 w-full" type="number"></vs-input>
+              </vs-col>
+          
+              <vs-col class="pd-5" vs-justify="left" vs-align="left" vs-lg="2" vs-sm="2" vs-xs="2" >
+                  <vs-input min="1" v-model="bill.SO_LUONG"  class="mt-5 mr-5 w-full" type="number"></vs-input>
+              </vs-col>
+
+              <vs-col class="pd-5" vs-justify="left" vs-align="left" vs-lg="1" vs-sm="1" vs-xs="1" >
+                  <vs-button icon="delete" class="mt-5" @click="removeProduct(index)"></vs-button>
+              </vs-col>
+      </vs-row>
+    </div>
   </vs-col>
   
   <vs-col class="p-6" vs-justify="center" vs-align="center" vs-lg="5" vs-sm="12" vs-xs="12" >
@@ -143,7 +165,8 @@ export default {
         DOI_DIEM: 0,
         GIAM_GIA: 0
       },
-       bill_more: false
+       bill_more: false,
+       LIST_BILL_MORE: []
     }
   },
   watch:
@@ -161,6 +184,14 @@ export default {
   },
   methods:
   {
+    addProduct()
+    {
+      this.LIST_BILL_MORE.push({
+          TEN_SAN_PHAM: '',
+          GIA_SAN_PHAM: 0,
+          SO_LUONG: 1
+      })
+    },
     initValue()
     {
       this.$store.state.product.LIST_PRODUCT = []
@@ -221,6 +252,8 @@ export default {
 
 
 <style>
+.pd-5 {padding: 5px;}
+.mlr-10 {margin: 0 10px;}
 .icon-right {float: right}
 .mr-5 {margin-right: 5px !important;}
 .scroll-product {
