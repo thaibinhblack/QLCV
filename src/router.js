@@ -231,20 +231,7 @@ const router = new Router({
                         rule: 'editor'
                     },
                 },
-                // {
-                //     path: '/apps/buy-data-customer',
-                //     name: 'data-customers',
-                //     component: () => import('@/views/apps/customer/buyDataCustomer.vue'),
-                //     meta: {
-                //         breadcrumb: [
-                //             { title: 'Home', url: '/' },
-                //             { title: 'Khách hàng', url: '/apps/customers'},
-                //             { title: 'Danh sách dữ liệu khách hàng', active: true },
-                //         ],
-                //         pageTitle: 'Danh sách dữ liệu khách hàng khách hàng',
-                //         rule: 'editor'
-                //     },
-                // }
+
     
             ]
         },

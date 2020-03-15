@@ -10,6 +10,11 @@
 
 module.exports = {
   publicPath: '/',
+  pluginOptions: {
+    webpackBundleAnalyzer: {
+      openAnalyzer: false
+    }
+  },
   transpileDependencies: [
     'vue-echarts',
     'resize-detector'
