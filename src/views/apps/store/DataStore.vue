@@ -83,14 +83,13 @@
 </template>
 
 <script>
-import SidebarActionCH from './SidebarActionCH.vue'
-import SidebarActionManager from './SidebarActionManager'
+
 import { mapGetters } from 'vuex'
 
 export default {
   components: {
-    'sidebar-action-ch': SidebarActionCH,
-    'sidebar-action-manager':  SidebarActionManager
+    'sidebar-action-ch': () => import('./SidebarActionManager'),
+    'sidebar-action-manager': () =>  import( './SidebarActionCH.vue')
   },
   data() {
     return {

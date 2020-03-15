@@ -99,14 +99,12 @@
 <script>
 import vSelect from 'vue-select'
 import { mapGetters } from 'vuex'
-import ItemProduct from './itemProduct'
-import SidebarCustomer from '../customer/sidebarActionCustomer'
 export default {
   components:
   {
     vSelect,
-    'item-product': ItemProduct,
-    'sidebar-customer': SidebarCustomer,
+    'item-product': () => import('./itemProduct'),
+    'sidebar-customer': () => import('../customer/sidebarActionCustomer'),
     'setting-bill': () => import('./settingBill'),
     'sidebar-setting': () => import('./sidebarSetting')
   },

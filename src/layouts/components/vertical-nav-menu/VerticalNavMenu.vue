@@ -104,14 +104,12 @@
 
 <script>
 import VuePerfectScrollbar from 'vue-perfect-scrollbar'
-import VNavMenuGroup from './VerticalNavMenuGroup.vue'
-import VNavMenuItem from './VerticalNavMenuItem.vue'
 
 export default {
   name: 'v-nav-menu',
   components: {
-    VNavMenuGroup,
-    VNavMenuItem,
+    'v-nav-menu-group': () => import('./VerticalNavMenuGroup.vue'),
+    'v-nav-menu-item': () => import('./VerticalNavMenuItem.vue'),
     VuePerfectScrollbar,
   },
   props: {

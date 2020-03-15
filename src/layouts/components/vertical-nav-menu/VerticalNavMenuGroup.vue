@@ -83,7 +83,6 @@
 
 
 <script>
-import VNavMenuItem from './VerticalNavMenuItem.vue'
 
 export default {
   name  : 'v-nav-menu-group',
@@ -94,7 +93,7 @@ export default {
     groupIndex : { type: Number },
   },
   components: {
-    VNavMenuItem
+    'v-nav-menu-item': () => import('./VerticalNavMenuItem.vue')
   },
   data: () => ({
     maxHeight : '0px',

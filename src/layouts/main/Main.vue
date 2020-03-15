@@ -63,67 +63,35 @@
 
 
 <script>
-import BackToTop           from 'vue-backtotop'
-import navMenuItems        from "@/layouts/components/vertical-nav-menu/navMenuItems.js"
-import TheNavbarVertical   from '@/layouts/components/navbar/TheNavbarVertical.vue'
-import TheFooter           from '@/layouts/components/TheFooter.vue'
-import themeConfig         from '@/../themeConfig.js'
-import VNavMenu            from '@/layouts/components/vertical-nav-menu/VerticalNavMenu.vue'
-
+import navMenuItems from '@/layouts/components/vertical-nav-menu/navMenuItems.js'
+import themeConfig  from '@/../themeConfig.js'
+import BackToTop from 'vue-backtotop'
 import axios from '@/axios'
 export default {
   components: {
     BackToTop,
-    TheFooter,
-    TheNavbarVertical,
-    VNavMenu,
+    'the-footer': () => import('@/layouts/components/TheFooter.vue'),
+    'the-navbar-vertical': () => import('@/layouts/components/navbar/TheNavbarVertical.vue'),
+    'v-nav-menu': () => import('@/layouts/components/vertical-nav-menu/VerticalNavMenu.vue'),
   },
   data() {
     return {
       disableCustomizer : themeConfig.disableCustomizer,
       disableThemeTour  : themeConfig.disableThemeTour,
-      footerType        : themeConfig.footerType  || 'static',
+      footerType        : 'static',
       hideScrollToTop   : themeConfig.hideScrollToTop,
       isNavbarDark      : false,
-      navbarColor       : themeConfig.navbarColor || '#fff',
-      navbarType        : themeConfig.navbarType  || 'floating',
-      navMenuItems      : navMenuItems,
+      navbarColor       : '#fff',
+      navbarType        :  'floating',
+      navMenuItems      : navMenuItems ,
       navMenuLogo       : require('@/assets/images/logo/logo.png'),
       routerTransition  : themeConfig.routerTransition || 'none',
       routeTitle        : this.$route.meta.pageTitle,
-      steps: [{
-          target  : '#btnVNavMenuMinToggler',
-          content : 'Toggle Collapse Sidebar.'
-        },
-        {
-          target  : '.vx-navbar__starred-pages',
-          content : 'Create your own bookmarks. You can also re-arrange them using drag & drop.'
-        },
-        {
-          target  : '.i18n-locale',
-          content : 'You can change language from here.'
-        },
-        {
-          target  : '.navbar-fuzzy-search',
-          content : 'Try fuzzy search to visit pages in flash.'
-        },
-        {
-          target  : '.customizer-btn',
-          content : 'Customize template based your preference',
-          params  : {
-            placement: 'left'
-          }
-        },
-      ],
     }
   },
   watch: {
     "$route"() {
       this.routeTitle = this.$route.meta.pageTitle
-    },
-    isThemeDark(val) {
-      const color = this.navbarColor == "#fff" && val ? "#10163a" : "#fff"
-      this.updateNavbarColor(color)
     },
     "$store.state.mainLayoutType"(val) {
       this.setNavMenuVisibility(val)
@@ -156,7 +124,6 @@ export default {
     isAppPage() {
       return this.$route.path.includes('/apps/') ? true : false
     },
-    isThemeDark()     { return this.$store.state.theme == 'dark' },
     layoutTypeClass() { return `main-${this.mainLayoutType}` },
     mainLayoutType()  { return this.$store.state.mainLayoutType  },
     navbarClasses()   {
@@ -173,15 +140,6 @@ export default {
   methods: {
     changeRouteTitle(title) {
       this.routeTitle = title
-    },
-    updateNavbar(val) {
-      if (val == "static") this.updateNavbarColor("#fff")
-      this.navbarType = val
-    },
-    updateNavbarColor(val) {
-      this.navbarColor = val
-      if (val == "#fff") this.isNavbarDark = false
-      else this.isNavbarDark = true
     },
     updateFooter(val) {
       this.footerType = val
@@ -234,8 +192,6 @@ export default {
   },
   created() {
     
-    const color = this.navbarColor == "#fff" && this.isThemeDark ? "#10163a" : this.navbarColor
-    this.updateNavbarColor(color)
     this.setNavMenuVisibility(this.$store.state.mainLayoutType)
     this.checkTokenUser()
   }
