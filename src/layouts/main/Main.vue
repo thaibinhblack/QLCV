@@ -14,7 +14,7 @@
     <template >
       <the-navbar-vertical
         :navbarColor="navbarColor"
-        :class="'text-white'" />
+        :class="'text-base'" />
     </template>
     <!-- /Navbar -->
 

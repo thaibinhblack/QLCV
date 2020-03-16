@@ -148,31 +148,6 @@ export default {
           OPTION_STORE: []
         }
     },
-    map_option_store()
-    {
-      if(this.store.OPTION_STORE.length == 0)
-      {
-        this.update_option()
-      }
-      else
-      {
-        if(this.store.OPTION_STORE.length < this.SETTING_STORE.length )
-       {
-          for(var i = this.store.OPTION_STORE.length  ; i < this.SETTING_STORE.length; i++ )
-          {
-            this.store.OPTION_STORE[i] = this.SETTING_STORE[i]
-             this.store.OPTION_STORE[i].VALUE_ATTRIBUTE = ""
-          }
-       }
-      }
-    },
-    update_option()
-    {
-      this.SETTING_STORE.forEach(element => {
-          element.VALUE_ATTRIBUTE = ""
-          this.store.OPTION_STORE.push(element)
-      });
-    },
     submitCH()
     {
       if(Object.entries(this.data).length === 0)
