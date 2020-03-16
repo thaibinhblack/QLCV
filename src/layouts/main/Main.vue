@@ -5,7 +5,7 @@
     <v-nav-menu
       :navMenuItems = "navMenuItems"
       :logo         = "navMenuLogo"
-      title         = "CRM Ecosy"
+      title         = "CRM QLCV"
       parent        = ".layout--main" />
 
     <div id="content-area" :class="[contentAreaClass, {'show-overlay': bodyOverlay}]">
@@ -163,7 +163,7 @@ export default {
         this.$router.push('/login')
       }
       else{
-        axios.get('/api/info?api_token='+this.$cookies.get('token'))
+        axios.get('/api/token?api_token='+this.$cookies.get('token'))
         .then((response) => {
           if(response.data.success == false)
           {

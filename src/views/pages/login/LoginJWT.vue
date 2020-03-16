@@ -29,7 +29,6 @@
         <!-- <vs-checkbox v-model="checkbox_remember_me" class="mb-3">Remember Me</vs-checkbox> -->
       </div>
     <div class="flex flex-wrap justify-between ">
-      <vs-button  type="border" to="/register" class="mt-6">Đăng ký</vs-button>
       <vs-button :disabled="!validateForm" @click="loginSystem"  class="mt-6">Đăng nhập</vs-button>
     </div>
   </div>

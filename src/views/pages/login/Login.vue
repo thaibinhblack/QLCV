@@ -25,7 +25,7 @@
 
                 <div class="vx-card__title mb-4">
                   <h4 class="mb-4">Đăng nhập</h4>
-                  <p>Phần mềm quản lý ECOSY</p>
+                  <p>Phần mềm quản lý công việc VNPT</p>
                 </div>
                 <login-jwt></login-jwt>
                 <!-- <vs-tabs>

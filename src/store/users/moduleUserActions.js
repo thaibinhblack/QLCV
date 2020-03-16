@@ -17,8 +17,8 @@ export default {
       // console.log('login',user)
       return new Promise((resolve,reject) => {
         const form_login = new FormData();
-        form_login.append("USERNAME_USER",user.userDetails.email)
-        form_login.append("PASSWORD_USER",user.userDetails.password)
+        form_login.append("USERNAME",user.userDetails.email)
+        form_login.append("PASSWORD",user.userDetails.password)
         axios.post('/api/login',form_login).then((response) => {
           if(response.success == true)
           {
@@ -39,7 +39,7 @@ export default {
     {
       return new Promise((resolve,reject) => {
         console.log('token',token)
-        axios.get('/api/info?api_token='+token).then((response) => {
+        axios.get('/api/token?api_token='+token).then((response) => {
           // axios.defaults.params.token = token
           commit("SET_AUTH",response.data.result)
           resolve(response.data)
